@@ -290,12 +290,32 @@
         
         .back-to-top.visible { opacity: 0.8; }
         .back-to-top:hover { opacity: 1; }
+        #searchBox{
+
+width:100%;
+
+padding:10px;
+
+margin-bottom:20px;
+
+border:1px solid #ccc;
+
+border-radius:6px;
+
+font-size:15px;
+
+}
     </style>
 </head>
 <body>
     <button class="nav-toggle" onclick="toggleNav()">☰</button>
     
     <nav id="sidebar">
+        <input
+id="searchBox"
+type="text"
+placeholder="Keresés..."
+onkeyup="kereses()">
         <h2>Iránytű</h2>
         <div class="subtitle">Integrált kapcsolat filozófiája</div>
         
@@ -1298,6 +1318,46 @@
                 }
             });
         });
+        function kereses(){
+
+let input=document.getElementById("searchBox").value.toLowerCase();
+
+let links=document.querySelectorAll("nav a");
+
+links.forEach(link=>{
+
+if(link.innerText.toLowerCase().includes(input))
+
+link.style.display="block";
+
+else
+
+link.style.display="none";
+
+});
+
+}
     </script>
+    <script>
+
+window.addEventListener("scroll",()=>{
+
+localStorage.setItem("scrollPos",window.scrollY);
+
+});
+
+window.onload=function(){
+
+let pos=localStorage.getItem("scrollPos");
+
+if(pos){
+
+window.scrollTo(0,pos);
+
+}
+
+}
+
+</script>
 </body>
-</html>
+    </html>
